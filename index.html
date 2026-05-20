@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Wordle</title>
+    <link rel="icon" href="assets/wordle.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- the Navigation Menu -->
+     <div class="nav">
+        <img src="assets/wordle logo.png">
+        <button class="nav-key">Help</button>
+        <button class="nav-key">Leaderboard</button>
+        <!-- <button class="nav-key"><img src="assets/leaderboard.png"></button> Just an idea-->
+        <button class="nav-key">Weekly Scores</button>
+        <button class="nav-key">Hint</button>
+    </div>
+
+    <!-- the Game Board -->
+    <div class="board"> 
+        <div class="row">
+            <div class="tile" data-row="0" data-col="0"></div>
+            <div class="tile" data-row="0" data-col="1"></div>
+            <div class="tile" data-row="0" data-col="2"></div>
+            <div class="tile" data-row="0" data-col="3"></div>
+            <div class="tile" data-row="0" data-col="4"></div>
+        </div>
+        <div class="row">
+            <div class="tile" data-row="1" data-col="0"></div>
+            <div class="tile" data-row="1" data-col="1"></div>
+            <div class="tile" data-row="1" data-col="2"></div>
+            <div class="tile" data-row="1" data-col="3"></div>
+            <div class="tile" data-row="1" data-col="4"></div>
+        </div>
+        <div class="row">
+            <div class="tile" data-row="2" data-col="0"></div>
+            <div class="tile" data-row="2" data-col="1"></div>
+            <div class="tile" data-row="2" data-col="2"></div>
+            <div class="tile" data-row="2" data-col="3"></div>
+            <div class="tile" data-row="2" data-col="4"></div>
+        </div>
+       <div class="row">
+            <div class="tile" data-row="3" data-col="0"></div>
+            <div class="tile" data-row="3" data-col="1"></div>
+            <div class="tile" data-row="3" data-col="2"></div>
+            <div class="tile" data-row="3" data-col="3"></div>
+            <div class="tile" data-row="3" data-col="4"></div>
+        </div>
+        <div class="row">
+            <div class="tile" data-row="4" data-col="0"></div>
+            <div class="tile" data-row="4" data-col="1"></div>
+            <div class="tile" data-row="4" data-col="2"></div>
+            <div class="tile" data-row="4" data-col="3"></div>
+            <div class="tile" data-row="4" data-col="4"></div>
+        </div>
+        <div class="row">
+            <div class="tile" data-row="5" data-col="0"></div>
+            <div class="tile" data-row="5" data-col="1"></div>
+            <div class="tile" data-row="5" data-col="2"></div>
+            <div class="tile" data-row="5" data-col="3"></div>
+            <div class="tile" data-row="5" data-col="4"></div>
+        </div>
+    </div>
+
+    <!-- Keyboard -->
+     <div class="keyboard">
+        <div class="key-row">
+            <button class="key">Q</button>
+            <button class="key">W</button>
+            <button class="key">E</button>
+            <button class="key">R</button>
+            <button class="key">T</button>
+            <button class="key">Y</button>
+            <button class="key">U</button>
+            <button class="key">I</button>
+            <button class="key">O</button>
+            <button class="key">P</button>
+        </div>
+        <div class="key-row">
+            <button class="key">A</button>
+            <button class="key">S</button>
+            <button class="key">D</button>
+            <button class="key">F</button>
+            <button class="key">G</button>
+            <button class="key">H</button>
+            <button class="key">J</button>
+            <button class="key">K</button>
+            <button class="key">L</button>
+        </div>
+        <div class="key-row">
+            <button class="key big">Enter</button>
+            <button class="key">Z</button>
+            <button class="key">X</button>
+            <button class="key">C</button>
+            <button class="key">V</button>
+            <button class="key">B</button>
+            <button class="key">N</button>
+            <button class="key">M</button>
+            <button class="key big">⌫</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
