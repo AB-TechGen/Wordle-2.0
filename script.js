@@ -5,6 +5,7 @@ let currentRow = 0;
 let currentCol = 0;
 
 let gameState = "playing";
+let animationsEnabled = true;
 
 let board = Array.from({length:ROWS}, ()=>Array(COLS).fill(""));
 // Create an array of length = ROWS, and fill it with empty subarrays of length = COLS
@@ -29,11 +30,13 @@ function addLetter(letter) {
         board[currentRow][currentCol] = letter;
         const tile = document.querySelector(`.tile[data-row="${currentRow}"][data-col="${currentCol}"]`);
         tile.innerText = letter;
-        tile.classList.add("pop");
-        // Pop animation for typing letters
-        tile.addEventListener("animationend", () => {
-            tile.classList.remove("pop");
-        }, {once:true});
+        if (animationsEnabled) {
+            tile.classList.add("pop");
+            // Pop animation for typing letters
+            tile.addEventListener("animationend", () => {
+                tile.classList.remove("pop");
+            }, {once:true});
+        }
         currentCol++;
     }
     /* else {
@@ -68,11 +71,13 @@ async function submitGuess() {
     let result = data.result;
     if (result.error) { // To prevent invalid words
         alert(result.error);
+        if (animationsEnabled) {
         const row = document.querySelectorAll(".row")[currentRow];
         row.classList.add("shake");
         row.addEventListener("animationend", () => {
             row.classList.remove("shake");
         }, {once:true});
+        }
         return;
     }
 
@@ -103,12 +108,14 @@ function paintRow(colours) {
     colours.forEach((colour, col) => {
         const tile = document.querySelector(`.tile[data-row="${currentRow}"][data-col="${col}"]`);
 
-        setTimeout(() => { 
+        if (!animationsEnabled) tile.classList.add(colour);
+        else { setTimeout(() => { 
             tile.classList.add("flip");
             tile.addEventListener("animationstart", () => {
                 tile.classList.add(colour);
             }, { once: true });
         }, col * 300);
+        }
     });
 }
 
@@ -127,12 +134,14 @@ function paintKeyboard(guess, colours) {
     }
 }
 
+// Help Modal
 const helpModal = document.querySelector("#help-modal")
 const helpButton = document.querySelector("#help-button");
 helpButton.addEventListener("click", () => helpModal.classList.remove("hidden"));
 const closeHelp = document.querySelector("#close-help");
 closeHelp.addEventListener("click", () => helpModal.classList.add("hidden"));
 
+// Hint Modal
 const hintModal = document.querySelector("#hint-modal");
 const hintButton = document.querySelector("#hint-button");
 let hintData = null;
@@ -153,3 +162,14 @@ vowelBtn.addEventListener("click", () => vowelDisplay.innerText = hintData.vow_h
 const consonantBtn = document.querySelector("#consonant-btn");
 const consonantDisplay = document.querySelector("#consonant-display");
 consonantBtn.addEventListener("click", () => consonantDisplay.innerText = hintData.cons_hint.toUpperCase());
+
+// Settings Modal
+const settingsModal = document.querySelector("#settings-modal");
+const settingsButton = document.querySelector("#settings-button");
+const closeSettings = document.querySelector("#close-settings");
+
+settingsButton.addEventListener("click", () => settingsModal.classList.remove("hidden"));
+closeSettings.addEventListener("click", () => settingsModal.classList.add("hidden"));
+
+const animationToggle = document.querySelector("#animation-toggle");
+animationToggle.addEventListener("change", () => animationsEnabled = animationToggle.checked);

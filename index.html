@@ -11,6 +11,7 @@
         <img src="assets/wordle logo.png">
         <button class="nav-key btn" id="help-button">Help</button>
         <button class="nav-key btn" id="hint-button">Hint</button>
+        <button class="nav-key btn" id="settings-button">Settings</button>
     </div>
 
     <!-- Help Modal -->
@@ -67,6 +68,22 @@
             </div>
         </div>
      </div>
+
+    <!-- Settings Modal -->
+    <div class="modal hidden" id="settings-modal">
+        <div class="modal-content">
+            <span class="btn close" id="close-settings">&times;</span>
+            <h2>Settings</h2>
+            <div class="settings-row">
+                <label for="animation-toggle">Animations</label>
+                <input type="checkbox" id="animation-toggle" checked>
+            </div>
+            <div class="settings-row">
+                <label for="theme-toggle">Light Mode</label>
+                <input type="checkbox" id="theme-toggle" checked>
+            </div>
+        </div>
+    </div>
 
     <!-- the Game Board -->
     <div class="board"> 

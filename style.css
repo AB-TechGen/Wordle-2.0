@@ -41,6 +41,9 @@
     padding: 30px;
     width: 400px;
     position: relative;
+    background-color: #121213;
+    border-radius: 12px;
+    border: 1px solid #3a3a3c;
 }
 
 .hidden {
@@ -105,6 +108,14 @@
     font-weight: bold;
     color: #6aaa64;
     margin: 0;
+}
+
+/* Settings Modal */
+.settings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
 }
 
 /* The Game Board*/
