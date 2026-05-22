@@ -43,7 +43,8 @@ function deleteLetter() {
 }
 
 async function submitGuess() {
-    if (currentCol != COLS) return;
+    if (currentCol != COLS) return; // Don't allow guesses before a complete word
+
     const guess = board[currentRow].join("").toLowerCase();
 
     const response = await fetch("http://localhost:8000/guess", {
