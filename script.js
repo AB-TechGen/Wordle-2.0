@@ -8,7 +8,6 @@ let gameState = "playing";
 
 let board = Array.from({length:ROWS}, ()=>Array(COLS).fill(""));
 // Create an array of length = ROWS, and fill it with empty subarrays of length = COLS
-// Wordle gameState
 
 document.querySelectorAll(".key").forEach( key => {
     key.addEventListener("click", ()=> handleKey(key.innerText));
@@ -69,6 +68,7 @@ async function submitGuess() {
     result = Object.values(result).map(c => c.toLowerCase())
     // console.log(result); // Testing
     paintRow(result);
+    paintKeyboard(guess, result);
     if (
         result[0] === "green" &&
         result[1] === "green" &&
@@ -93,4 +93,19 @@ function paintRow(colours) {
         const tile = document.querySelector(`.tile[data-row="${currentRow}"][data-col="${col}"]`);
         tile.classList.add(colour);
     });
+}
+
+function paintKeyboard(guess, colours) {
+    for (let i=0; i<guess.length; i++) {
+        const letter = guess[i].toUpperCase();
+        const colour = colours[i];
+        const key = document.querySelector(`.key[data-key="${letter}"]`);
+
+        if (key.classList.contains("green")) continue;
+        if (colour === "gray" && key.classList.contains("orange")) continue;
+        if (colour === "green" && key.classList.contains("orange")) key.classList.remove("orange");
+        if ((colour === "green" || colour === "orange") && key.classList.contains("gray")) key.classList.remove("gray");
+
+        key.classList.add(colour);
+    }
 }
