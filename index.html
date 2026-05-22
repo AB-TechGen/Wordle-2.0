@@ -9,12 +9,64 @@
     <!-- the Navigation Menu -->
      <div class="nav">
         <img src="assets/wordle logo.png">
-        <button class="nav-key">Help</button>
-        <button class="nav-key">Leaderboard</button>
-        <!-- <button class="nav-key"><img src="assets/leaderboard.png"></button> Just an idea-->
-        <button class="nav-key">Weekly Scores</button>
-        <button class="nav-key">Hint</button>
+        <button class="nav-key btn" id="help-button">Help</button>
+        <button class="nav-key btn" id="hint-button">Hint</button>
     </div>
+
+    <!-- Help Modal -->
+     <div class="modal hidden" id="help-modal">
+        <div class="modal-content">
+            <span class="btn close" id="close-help">&times;</span>
+            <h2>How to Play</h2>
+            <p>Guess the Wordle in 6 tries <br>
+            Each guess should be a valid 5-letter word <br>
+            The colour of the tiles & keyboard will change to show you - how close your guess was</p>
+
+            <div class="example-row">
+                <div class="example-tile green">C</div>
+                <div class="example-tile">R</div>
+                <div class="example-tile">A</div>
+                <div class="example-tile">N</div>
+                <div class="example-tile">E</div>
+            </div>
+            <p><strong>C</strong> is in the word and in the correct spot</p>
+            
+            <div class="example-row">
+                <div class="example-tile">Q</div>
+                <div class="example-tile orange">U</div>
+                <div class="example-tile">I</div>
+                <div class="example-tile">C</div>
+                <div class="example-tile">K</div>
+            </div>
+            <p><strong>U</strong> is in the word but in the wrong spot</p>
+
+            <div class="example-row">
+                <div class="example-tile">G</div>
+                <div class="example-tile">E</div>
+                <div class="example-tile">N</div>
+                <div class="example-tile">I</div>
+                <div class="example-tile gray">E</div>
+            </div>
+            <p><strong>E</strong> is not in the word</p>
+
+        </div>
+     </div>
+
+    <!-- Hint Modal -->
+     <div class="modal hidden" id="hint-modal">
+        <div class="modal-content">
+            <span class="btn close" id="close-hint">&times;</span>
+            <h2>Hints</h2>
+            <div class="reveal-hint">
+                <button class="btn" id="vowel-btn">Reveal a Vowel!</button>
+                <p id="vowel-display"></p>
+            </div>
+            <div class="reveal-hint">
+                <button class="btn" id="consonant-btn">Reveal a Consonant!</button>
+                <p id="consonant-display"></p>
+            </div>
+        </div>
+     </div>
 
     <!-- the Game Board -->
     <div class="board"> 

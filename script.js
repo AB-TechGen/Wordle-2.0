@@ -15,6 +15,7 @@ document.querySelectorAll(".key").forEach( key => {
 
 document.addEventListener("keydown", event => handleKey(event.key));
 
+
 function handleKey(key) {
     if (gameState !== "playing") return;
 
@@ -125,3 +126,30 @@ function paintKeyboard(guess, colours) {
         key.classList.add(colour);
     }
 }
+
+const helpModal = document.querySelector("#help-modal")
+const helpButton = document.querySelector("#help-button");
+helpButton.addEventListener("click", () => helpModal.classList.remove("hidden"));
+const closeHelp = document.querySelector("#close-help");
+closeHelp.addEventListener("click", () => helpModal.classList.add("hidden"));
+
+const hintModal = document.querySelector("#hint-modal");
+const hintButton = document.querySelector("#hint-button");
+let hintData = null;
+hintButton.addEventListener("click", async () => {
+    hintModal.classList.remove("hidden");
+    
+    if (!hintData) { // to provide consistency of hint
+        const response = await fetch("http://localhost:8000/hint");
+        hintData = await response.json();
+    }
+});
+const closeHint = document.querySelector("#close-hint");
+closeHint.addEventListener("click", () => hintModal.classList.add("hidden"));
+
+const vowelBtn = document.querySelector("#vowel-btn");
+const vowelDisplay = document.querySelector("#vowel-display");
+vowelBtn.addEventListener("click", () => vowelDisplay.innerText = hintData.vow_hint.toUpperCase());
+const consonantBtn = document.querySelector("#consonant-btn");
+const consonantDisplay = document.querySelector("#consonant-display");
+consonantBtn.addEventListener("click", () => consonantDisplay.innerText = hintData.cons_hint.toUpperCase());
