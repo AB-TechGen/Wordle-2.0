@@ -85,3 +85,38 @@
     color: white;
     border-color: #787c7e;
 }
+
+/* Animations */
+
+@keyframes pop{
+    0% {transform: scale(0.8);}
+    40% {transform: scale(1.1);}
+    100% {transform: scale(1);}
+}
+
+.pop {
+    animation: pop 0.12s;
+}
+
+@keyframes flip{
+    0% {transform: rotateX(0);}
+    50% {transform: rotateX(90deg);}
+    100% {transform: rotateX(0);}
+}
+
+.flip {
+    animation: flip 0.5s ease;
+}
+
+@keyframes shake{
+    0% {transform: translateX(0);}
+    20% {transform: translateX(-5px);}
+    40% {transform: translateX(5px);}
+    60% {transform: translateX(-5px);}
+    80% {transform: translateX(5px);}
+    100% {transform: translateX(0);}
+}
+
+.shake {
+    animation: shake 0.25s;
+}

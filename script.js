@@ -28,6 +28,11 @@ function addLetter(letter) {
         board[currentRow][currentCol] = letter;
         const tile = document.querySelector(`.tile[data-row="${currentRow}"][data-col="${currentCol}"]`);
         tile.innerText = letter;
+        tile.classList.add("pop");
+        // Pop animation for typing letters
+        tile.addEventListener("animationend", () => {
+            tile.classList.remove("pop");
+        }, {once:true});
         currentCol++;
     }
     /* else {
@@ -62,6 +67,11 @@ async function submitGuess() {
     let result = data.result;
     if (result.error) { // To prevent invalid words
         alert(result.error);
+        const row = document.querySelectorAll(".row")[currentRow];
+        row.classList.add("shake");
+        row.addEventListener("animationend", () => {
+            row.classList.remove("shake");
+        }, {once:true});
         return;
     }
 
@@ -91,7 +101,13 @@ async function submitGuess() {
 function paintRow(colours) {
     colours.forEach((colour, col) => {
         const tile = document.querySelector(`.tile[data-row="${currentRow}"][data-col="${col}"]`);
-        tile.classList.add(colour);
+
+        setTimeout(() => { 
+            tile.classList.add("flip");
+            tile.addEventListener("animationstart", () => {
+                tile.classList.add(colour);
+            }, { once: true });
+        }, col * 300);
     });
 }
 
