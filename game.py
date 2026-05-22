@@ -1,5 +1,14 @@
-def guesser(guess, secret):
+from word_gen import words, secret
 
+def check_guess(guess):
+    if guess not in words:
+        return {"error": "Invalid word"}
+
+def guesser(guess):
+    validation = check_guess(guess)
+    if validation:
+        return validation
+    
     secretcopy = secret
     guesscopy = guess
 

@@ -12,10 +12,12 @@ document.querySelectorAll(".key").forEach( key => {
     key.addEventListener("click", ()=> handleKey(key.innerText));
 });
 
+document.addEventListener("keydown", event => handleKey(event.key));
+
 function handleKey(key) {
     if (key === "Enter") submitGuess();
-    else if (key === "⌫") deleteLetter();
-    else addLetter(key);
+    else if (key === "Backspace" || key === "⌫") deleteLetter();
+    else if (/^[a-zA-Z]$/.test(key)) addLetter(key.toUpperCase());
 }
 
 function addLetter(letter) {
@@ -54,6 +56,10 @@ async function submitGuess() {
     });
 
     const result = await response.json();
+    if (result.error) { // To prevent invalid words
+        alert(result.error);
+        return;
+    }
 
     paintRow(Object.values(result).map(c => c.toLowerCase()));
     currentRow++;

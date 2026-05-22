@@ -1,9 +1,7 @@
 import random
 
-file = open("14855_valid_words.txt")
-words = [word.strip() for word in file.readlines()]
+with open("14855_valid_words.txt") as file:
+    words = set(word.strip() for word in file.readlines())
 
-def choose_secretword():
-    secret = random.choice(words)
-    # print(secret) # Testing
-    return secret
+secret = random.choice(list(words))
+# print(secret) # Testing

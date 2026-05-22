@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from game import guesser
-from word_gen import choose_secretword, words
 
 app = FastAPI()
 app.add_middleware(
@@ -12,10 +11,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-secretword = choose_secretword()
-
 @app.post("/guess")
 def check_guess(data: dict):
     guess = data["guess"]
-    result = guesser(guess, secretword)
+    result = guesser(guess)
     return result
