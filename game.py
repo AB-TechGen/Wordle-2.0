@@ -53,4 +53,4 @@ def guesser(guess):
 
 
 if __name__ == "__main__":
-    print(guesser("crane", "ozone"))
+    print(guesser("crane"))
